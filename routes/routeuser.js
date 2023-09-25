@@ -65,6 +65,7 @@ app.post("/login", async (req, res) => {
 app.post('/process-payment', async (req, res) => {
   try {
     const { cardNumber, expiration, cvc } = req.body;
+    console.log('CardNum: ${cardNumber} Exp: ${expiration} CVC: ${cvc}')
 
     // Create a payment intent using the Stripe API
     const paymentIntent = await stripe.paymentIntents.create({
