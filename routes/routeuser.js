@@ -78,9 +78,9 @@ app.post('/process-payment', async (req, res) => {
           exp_month: expiration.split('/')[0],
           exp_year: expiration.split('/')[1],
           cvc,
-          type: 'card',
         },
       },
+      type: 'card',
     });
 
     // Confirm the payment intent
