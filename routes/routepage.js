@@ -8,8 +8,8 @@ app.post("/add", async (req, res) => {
   try {
     const { email, name, description } = req.body;
 
-    const newOrg = new Org({ email, name, description });
-    await newOrg.save();
+    const newPag = new Pag({ email, name, description });
+    await newPag.save();
 
     res.status(201).json({ message: "Registro exitoso" });
   } catch (error) {
@@ -18,10 +18,10 @@ app.post("/add", async (req, res) => {
   }
 });
 
-app.get("/getOrgs", async (req, res) => {
+app.get("/getPag", async (req, res) => {
   // []
-  const newOrg = await Org.find();
-  return res.json(newOrg);
+  const newPag = await Pag.find();
+  return res.json(newPag);
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
 });
