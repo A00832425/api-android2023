@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Org = require("../model/org");
 const verifyToken = require("../middleware/verify");
 
-app.post("/add", verifyToken, async (req, res) => {
+app.post("/add", async (req, res) => {
   try {
     const { email, name, description } = req.body;
 
@@ -18,7 +18,7 @@ app.post("/add", verifyToken, async (req, res) => {
   }
 });
 
-app.get("/getOrgs", verifyToken, async (req, res) => {
+app.get("/getOrgs", async (req, res) => {
   // []
   const newOrg = await Org.find();
   return res.json(newOrg);
