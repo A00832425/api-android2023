@@ -14,6 +14,8 @@ dbConnect();
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/orgs/", orgRoutes);
+app.use("/pag/", pagRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Servidor ejecutandose en el puerto: ${PORT}`);
