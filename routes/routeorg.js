@@ -18,4 +18,13 @@ app.post("/add", verifyToken, async (req, res) => {
   }
 });
 
+app.get("/getOrgs", verifyToken, async (req, res) => {
+  // []
+  const newOrg = await Org.find();
+  return res.json(newOrg);
+  //const identificador = req.params.id;
+  //return res.send("Peticion GET recibida" + "id: " + identificador);
+});
+
+
 module.exports = app;
