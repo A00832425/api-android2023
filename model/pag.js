@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PageSchema = Schema({
-  phoneNumber: String,
-  password: String,
-  isAdmin: { type: Boolean, default: false },
+  titulo: String,
+  desc: String,
+  img: { type: String, default: "" },
+  orgId: Int
 });
 
 module.exports = mongoose.model("pag", PageSchema);
