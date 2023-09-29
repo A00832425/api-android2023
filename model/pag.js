@@ -7,4 +7,4 @@ const PageSchema = Schema({
   isAdmin: { type: Boolean, default: false },
 });
 
-module.exports = mongoose.model("pag", UserSchema);
+module.exports = mongoose.model("pag", PageSchema);
