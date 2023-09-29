@@ -6,9 +6,9 @@ const verifyToken = require("../middleware/verify");
 
 app.post("/add", async (req, res) => {
   try {
-    const { email, name, description } = req.body;
+    const { titulo, desc, img, orgId } = req.body;
 
-    const newPag = new Pag({ email, name, description });
+    const newPag = new Pag({ titulo, desc, img, orgId });
     await newPag.save();
 
     res.status(201).json({ message: "Registro exitoso" });
