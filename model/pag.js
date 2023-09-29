@@ -5,7 +5,7 @@ const PageSchema = Schema({
   titulo: String,
   desc: String,
   img: { type: String, default: "" },
-  orgId: Int
+  orgId: Integer
 });
 
 module.exports = mongoose.model("pag", PageSchema);
