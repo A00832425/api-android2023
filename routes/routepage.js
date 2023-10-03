@@ -18,9 +18,9 @@ app.post("/add", async (req, res) => {
   }
 });
 
-app.get("/getPag/:id", async (req, res) => {
+app.post("/getPag", async (req, res) => {
   // []
-  const id = req.params.id;
+  const id = req.body.id;
   const newPag = await Pag.find({"orgId" : id});
   return res.json(newPag);
   //const identificador = req.params.id;
