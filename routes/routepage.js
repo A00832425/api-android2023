@@ -20,7 +20,7 @@ app.post("/add", async (req, res) => {
 
 app.post("/getPag", async (req, res) => {
   // []
-  const id = req.body.id;
+  const { id } = req.body;
   console.log(id);
   const newPag = await Pag.find({"orgId" : id});
   return res.json(newPag);
