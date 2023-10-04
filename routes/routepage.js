@@ -21,9 +21,9 @@ app.post("/add", async (req, res) => {
 app.post("/getPag", async (req, res) => {
   // []
   console.log("Aqui empieza el post");
-  const { id } = req.body;
-  console.log(id);
-  const newPag = await Pag.find({"orgId" : id});
+  const { elS } = req.body;
+  console.log(elS);
+  const newPag = await Pag.find({"orgId" : elS});
   console.log(newPag);
   return res.json(newPag);
   //const identificador = req.params.id;
