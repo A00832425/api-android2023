@@ -95,6 +95,96 @@ app.post('/process-payment', async (req, res) => {
   }
 });
 
+app.post("/add-favorite/:organizationId", verifyToken, async (req, res) => {
+  try {
+    const organizationId = req.params.organizationId;
+    const userId = req.user.userId;
+
+    // Verificamos si existe la organizacion
+
+    const user = await User.findById(userId);
+    const organization = await Organization.findById(organizationId);
+
+    console.log(user);
+    console.log(organization);
+
+    if (!user || !organization) {
+      return res
+        .status(404)
+        .json({ message: "User or organization not found" });
+    }
+
+    if (!user.favoriteOrganizations.includes(organizationId)) {
+      user.favoriteOrganizations.push(organizationId);
+      await user.save();
+      res.status(200).json({ message: "Organization added to favorites" });
+    } else {
+      res.status(400).json({ message: "Organization already in favorites" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.delete(
+  "/remove-favorite/:organizationId",
+  verifyToken,
+  async (req, res) => {
+    try {
+      const organizationId = req.params.organizationId;
+      const userId = req.user.userId;
+
+      const user = await User.findById(userId);
+      const organization = await Organization.findById(organizationId);
+
+      if (!user || !organization) {
+        return res
+          .status(404)
+          .json({ message: "User or organization not found" });
+      }
+
+      // Remove the organization from the user's favorites if it's present
+      const index = user.favoriteOrganizations.indexOf(organizationId);
+      if (index !== -1) {
+        user.favoriteOrganizations.splice(index, 1);
+        await user.save();
+        res
+          .status(200)
+          .json({ message: "Organization removed from favorites" });
+      } else {
+        res.status(400).json({ message: "Organization not in favorites" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  }
+);
+
+app.get("/getUserFavoriteOrganizations", verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const user = await User.findById(userId);
+
+    console.log(user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Retrieve the organization records for the user's favorite organization IDs
+    const favoriteOrganizations = await Organization.find({
+      _id: { $in: user.favoriteOrganizations },
+    });
+
+    return res.status(200).json(favoriteOrganizations);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 
 
