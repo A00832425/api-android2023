@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/user");
 const verifyToken = require("../middleware/verify");
 const bcrypt = require("bcrypt");
+const Org = require("../model/org");
 
 const stripe = require('stripe')("sk_test_51NtOJqA7EOLFqNcIgdh0F9LzzS80PeItdHdQp5LEaEwXDQk3z4TLHt8Tax5dizhBDofKZ12b5ovG22vbpJ521XYJ00Im70Ns3X");
 
