@@ -103,7 +103,7 @@ app.post("/add-favorite/:organizationId", verifyToken, async (req, res) => {
     // Verificamos si existe la organizacion
 
     const user = await User.findById(userId);
-    const organization = await Organization.findById(organizationId);
+    const organization = await Org.findById(organizationId);
 
     console.log(user);
     console.log(organization);
@@ -136,7 +136,7 @@ app.delete(
       const userId = req.user.userId;
 
       const user = await User.findById(userId);
-      const organization = await Organization.findById(organizationId);
+      const organization = await Org.findById(organizationId);
 
       if (!user || !organization) {
         return res
@@ -175,7 +175,7 @@ app.get("/getUserFavoriteOrganizations", verifyToken, async (req, res) => {
     }
 
     // Retrieve the organization records for the user's favorite organization IDs
-    const favoriteOrganizations = await Organization.find({
+    const favoriteOrganizations = await Org.find({
       _id: { $in: user.favoriteOrganizations },
     });
 
