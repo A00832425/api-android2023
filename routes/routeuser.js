@@ -47,7 +47,7 @@ app.post("/login", async (req, res) => {
 
     // Generamos el token
     const token = jwt.sign(
-      { phoneNumber: user.phoneNumber },
+      { phoneNumber: user.phoneNumber, userId: user._id },
       "your-secret-key",
       {
         expiresIn: "1h",
