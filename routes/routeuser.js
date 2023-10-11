@@ -128,6 +128,37 @@ app.post("/add-favorite/:organizationId", verifyToken, async (req, res) => {
   }
 });
 
+
+app.post("/hasFav/:organizationId", verifyToken, async (req, res) => {
+  try {
+    const organizationId = req.params.organizationId;
+    const userId = req.user.userId;
+
+    // Verificamos si existe la organizacion
+
+    const user = await User.findById(userId);
+    const organization = await Org.findById(organizationId);
+
+    console.log(user);
+    console.log(organization);
+
+    if (!user || !organization) {
+      return res
+        .status(404)
+        .json({ message: "User or organization not found" });
+    }
+
+    if (user.favoriteOrganizations.includes(organizationId)) {
+      res.status(200).json({ message: true });
+    } else {
+      res.status(200).json({ message: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.delete(
   "/remove-favorite/:organizationId",
   verifyToken,
