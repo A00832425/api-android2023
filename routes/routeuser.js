@@ -134,10 +134,13 @@ app.post("/hasFav/:organizationId", verifyToken, async (req, res) => {
     const organizationId = req.params.organizationId;
     const userId = req.user.userId;
 
+    
     // Verificamos si existe la organizacion
 
     const user = await User.findById(userId);
     const organization = await Org.findById(organizationId);
+
+    console.log(" - ");
 
     console.log(user);
     console.log(organization);
