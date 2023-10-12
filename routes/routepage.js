@@ -19,12 +19,11 @@ app.post("/add", async (req, res) => {
 });
 
 app.post("/getPag", async (req, res) => {
-  // []
-  console.log("Aqui empieza el post");
+
   const { elS } = req.body;
-  console.log(elS);
+
   const newPag = await Pag.find({"orgId" : elS});
-  console.log(newPag);
+
   return res.json(newPag);
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
