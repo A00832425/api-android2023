@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const Pag = require("../model/pag");
 const verifyToken = require("../middleware/verify");
 
+
 app.post("/add", async (req, res) => {
   try {
     const { titulo, desc, img, orgId } = req.body;
