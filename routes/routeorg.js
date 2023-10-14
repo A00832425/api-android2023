@@ -10,7 +10,7 @@ app.post("/add", async (req, res) => {
 
     const newOrg = new Org({ email, name, description });
     await newOrg.save().then(savedObject => {
-    console.log('Object saved with ID:', savedObject._id);
+    console.log('Object saved with ID:', savedObject._id.toString());
     // You can access the ObjectId via savedObject._id
   }
       );
