@@ -9,7 +9,7 @@ const PageSchema = Schema({
   linkb1: String,
   linkb2: String,
   linkb4: String,
-  selectedIndices: Array<String>,
+  selectedIndices: [String],
 });
 
 module.exports = mongoose.model("pag", PageSchema);
