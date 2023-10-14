@@ -9,7 +9,11 @@ app.post("/add", async (req, res) => {
     const { email, name, description } = req.body;
 
     const newOrg = new Org({ email, name, description });
-    await newOrg.save();
+    await newOrg.save().then(savedObject => {
+    console.log('Object saved with ID:', savedObject._id);
+    // You can access the ObjectId via savedObject._id
+  }
+      );
 
     res.status(201).json({ message: "Registro exitoso" });
   } catch (error) {
