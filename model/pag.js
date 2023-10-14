@@ -5,7 +5,11 @@ const PageSchema = Schema({
   titulo: String,
   desc: String,
   img: { type: String, default: "" },
-  orgId: String
+  orgId: String,
+  linkb1: String,
+  linkb2: String,
+  linkb4: String,
+  selectedIndices: Array<String>
 });
 
 module.exports = mongoose.model("pag", PageSchema);
