@@ -2,14 +2,16 @@ const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
 const Org = require("../model/org");
+const Pag = require("../model/pag");
 const verifyToken = require("../middleware/verify");
 
 app.post("/add", async (req, res) => {
   try {
-    const { email, name, description } = req.body;
+    const { email, name, description,  } = req.body;
 
     const newOrg = new Org({ email, name, description });
     await newOrg.save().then(savedObject => {
+    const newPag = new Pag({ email, name, description });
     console.log('Object saved with ID:', savedObject._id.toString());
     // You can access the ObjectId via savedObject._id
   }
