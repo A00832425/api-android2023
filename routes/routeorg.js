@@ -31,6 +31,6 @@ app.get("/getOrgs", async (req, res) => {
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
 });
-
+ 
 
 module.exports = app;
