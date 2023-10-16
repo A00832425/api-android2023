@@ -34,6 +34,14 @@ app.get("/getOrgs", async (req, res) => {
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
 });
+
+app.post("/filtOrgs", async (req, res) => {
+  // []
+  const newOrg = await Org.find();
+  return res.json(newOrg);
+  //const identificador = req.params.id;
+  //return res.send("Peticion GET recibida" + "id: " + identificador);
+});
  
 
 module.exports = app;
