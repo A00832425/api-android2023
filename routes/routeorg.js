@@ -8,9 +8,9 @@ const verifyToken = require("../middleware/verify");
 app.post("/add", async (req, res) => {
   try {
     console.log(req.body)
-    const { email, name, description, img, linkb1, linkb2, linkb4} = req.body;
+    const { email, name, description, img, linkb1, linkb2, linkb4, orgTags} = req.body;
     console.log(linkb1)
-    const newOrg = new Org({ email, name, description });
+    const newOrg = new Org({ email, name, description, orgTags });
     await newOrg.save().then(savedObject => {
     const newPag = new Pag({ titulo: name, desc: description, img, linkb1, linkb2, linkb4, orgId: savedObject._id.toString()});
     newPag.save()
