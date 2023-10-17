@@ -37,10 +37,41 @@ app.get("/getOrgs", async (req, res) => {
 
 app.post("/filtOrgs", async (req, res) => {
   // []
-  const newOrg = await Org.find();
+  const {tag} = req.body;
+  const resultado = [];
+  console.log(tag);
+  for (const element of array) {
+    console.log(element);
+    const newOrg = await Org.find({ "orgTags": { $elemMatch: { $eq: it } } });
+    result.push(newOrg);
+  }
   return res.json(newOrg);
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
+});
+
+app.get("/getUserFavoriteOrganizations", verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const user = await User.findById(userId);
+
+    console.log(user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Retrieve the organization records for the user's favorite organization IDs
+    const favoriteOrganizations = await Org.find({
+      _id: { $in: user.favoriteOrganizations },
+    });
+
+    return res.status(200).json(favoriteOrganizations);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
  
 
