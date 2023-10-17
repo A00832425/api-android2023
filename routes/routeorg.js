@@ -42,7 +42,7 @@ app.post("/filtOrgs", async (req, res) => {
   console.log(tag);
   for (const element of tag) {
     console.log(element);
-    const newOrg = await Org.find({ "orgTags": { $elemMatch: { $eq: it } } });
+    const newOrg = await Org.find({ "orgTags": { $elemMatch: { $eq: element } } });
     result.push(newOrg);
   }
   console.log(resultado);
