@@ -45,6 +45,7 @@ app.post("/filtOrgs", async (req, res) => {
     const newOrg = await Org.find({ "orgTags": { $elemMatch: { $eq: it } } });
     result.push(newOrg);
   }
+  console.log(resultado);
   return res.json(resultado);
   //const identificador = req.params.id;
   //return res.send("Peticion GET recibida" + "id: " + identificador);
